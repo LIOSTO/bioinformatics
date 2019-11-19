@@ -1,0 +1,24 @@
+FASTA文件拆分&合并
+FASTA文件拆分： 
+1. 从a.fasta中提取第10至第20个序列存到b.fasta中
+
+ awk -v RS=’>‘‘NR>1{i++}i>=10&&i<=20{print “>”$0}’ a.fasta|sed ‘/^$/d’>b.fasta 
+
+2.将input.fasta中第每一条序列保存到一个文件中
+
+ awk ‘/^>/{f=++d”.fasta”} {print > f}’ input.fasta
+
+FASTA文件合并：
+
+cat *.fasta > output.fasta
+
+awk是Unix/Linux下的一种用于文本处理的编程语言，Sed是Unix/Linux下的一种流编辑器。功能都非常强大。这些操作用Python或Perl编程也很容易实现，但不如命令行这么直截了当。 在Windows下如果安装了Cygwin（windows linux 模拟器）这个软件，也可以使用这些命令。
+
+
+
+其实，用普通的bash 代码就能做到文件序列查询与替换，但是始终是有点麻烦，所以接下来，我想说，有个很好用的东西！！！！最适合做生物科研的语言是“bio-python”，因为里面有一大堆现成的代码，那些用perl的实在是太麻烦了~~~~~ 详情，见另外（无限更新）文章——我的biopython使用笔记......
+
+我来纠错的，Bioperl也是很厉害的东西orz详情见（无限更新）bioperl使用笔记......
+
+#2
+
